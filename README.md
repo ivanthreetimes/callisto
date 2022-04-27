@@ -1,2 +1,2 @@
 # callisto
-Python web framework project - Django
+Python web framework project with django
