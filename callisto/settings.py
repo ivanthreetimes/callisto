@@ -8,12 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'my_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == 'True'
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1 localhost').split(' ')
 
 # Application definition
 
@@ -27,6 +27,7 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
+    'callisto.main_app',
     'callisto.auth_app',
 ]
 
@@ -71,9 +72,9 @@ WSGI_APPLICATION = 'callisto.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('USER_NAME'),
-        'PASSWORD': os.environ.get('USER_PASSWORD'),
+        'NAME': os.environ.get('DB_NAME', 'callisto_db'),
+        'USER': os.environ.get('USER_NAME', 'postgres'),
+        'PASSWORD': os.environ.get('USER_PASSWORD', 'postgres'),
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -117,3 +118,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'auth_app.AppUser'
+
+LOGOUT_REDIRECT_URL = 'user login'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
