@@ -1,5 +1,46 @@
-<form action="{% url 'user login' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button>Login</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_content %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap" rel="stylesheet">
+
+    <div class="content1">
+        <form class="content1-2" action="{% url 'user login' %}" method="post">
+            {% csrf_token %}
+            <label id="username_label">
+                {{ form.username.label_tag }}
+            </label>
+            <label for="id_username">
+                {{ form.username }}
+            </label>
+            <label id="password_label">
+                {{ form.password.label_tag }}
+            </label>
+            <label for="id_password">
+                {{ form.password }}
+            </label>
+            <br>
+            <button class="login-btn">Login</button>
+            <label id="redirect_to_register_label">
+                <a>Don't have an account?</a>
+                <a href="register.html">Register.</a>
+
+            </label>
+            <label id="errors_label">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </label>
+
+        </form>
+    </div>
+
+    <div class="content1-3">
+        <h1>Callisto</h1>
+    </div>
+
+{% endblock %}
+

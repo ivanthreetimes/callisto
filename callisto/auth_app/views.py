@@ -9,12 +9,16 @@ from callisto.auth_app.forms import AppUserRegistrationForm
 class AppUserRegistrationView(views.CreateView):
     form_class = AppUserRegistrationForm
     template_name = 'auth/register.html'
-    success_url = reverse_lazy('user login')
+
+    def get_success_url(self):
+        return reverse_lazy('index')
 
 
 class AppUserLoginView(auth_views.LoginView):
     template_name = 'auth/login.html'
-    # success_url = reverse_lazy('index')
+
+    def get_success_url(self):
+        return reverse_lazy('index')
 
 
 class AppUserLogoutView(auth_views.LogoutView):

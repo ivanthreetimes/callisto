@@ -1,1 +1,6 @@
-<h1>Template View</h1>
+<h1>Index View</h1>
+
+{% csrf_token %}
+<a href="{% url 'user register' %}">Register</a>
+<a href="{% url 'user login' %}">Login</a>
+<a href="{% url 'user logout' %}">Logout</a>

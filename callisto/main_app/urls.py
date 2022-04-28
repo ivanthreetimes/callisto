@@ -1,8 +1,6 @@
 from django.urls import path
-from django.views import generic as views
-
-from callisto.auth_app.views import AppUserRegistrationView, AppUserLoginView, AppUserLogoutView
+from callisto.main_app.views import IndexView
 
 urlpatterns = [
-    path('', views.TemplateView.as_view(template_name='index.html'))
+    path('', IndexView.as_view(), name='index')
 ]

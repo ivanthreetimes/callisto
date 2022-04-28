@@ -1,0 +1,115 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content1 {
+    height: 100%;
+    width: 100%;
+    background-image: url(https://cdn.discordapp.com/attachments/948302328803495939/962780731606700052/unknown.png);
+}
+
+.content1-2 {
+    width: 25%;
+    height: 30%;
+    border-radius: 20px;
+    background-color: white;
+    padding: 3% 3%;
+    position: absolute;
+    left: 5%;
+    top: 35%;
+    box-shadow: 10px 15px 35px rgba(55, 64, 71, 0.315);
+}
+
+#username_label {
+    font-size: 120%;
+    display: block;
+    margin-bottom: 5px;
+    font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+    font-stretch: expanded;
+    font-weight: bold;
+}
+
+#password_label {
+    font-size: 120%;
+    display: block;
+    margin-bottom: 5px;
+    font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+    font-stretch: expanded;
+    font-weight: bold;
+    position: relative;
+    bottom: -5%;
+}
+
+#id_username {
+    width: 70%;
+    height: 10%;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    font-size: 20px;
+}
+
+#id_password {
+    width: 70%;
+    height: 10%;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    font-size: 20px;
+    position: relative;
+    bottom: -5%;
+}
+
+
+.login-btn {
+    position: relative;
+    left: -1%;
+    bottom: -15%;
+    color: white;
+    background-color: black;
+    border-radius: 30px;
+    border: none;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #555555;
+    color: white;
+}
+
+
+#redirect_to_register_label {
+    position: absolute;
+    right: 35%;
+    bottom: 32%;
+}
+
+#errors_label {
+    color: red;
+    position: absolute;
+    right: 0;
+    bottom: 20%;
+}
+
+img {
+    width: 600px;
+}
+
+h1 {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    font-size: 1500%;
+    color: rgb(62, 80, 76);
+    font-family: 'Beau Rivage', cursive;
+}
