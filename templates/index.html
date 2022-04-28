@@ -1,6 +1,9 @@
-<h1>Index View</h1>
+{% extends 'base.html' %}
 
-{% csrf_token %}
-<a href="{% url 'user register' %}">Register</a>
-<a href="{% url 'user login' %}">Login</a>
-<a href="{% url 'user logout' %}">Logout</a>
+{% block page_content %}
+    {% csrf_token %}
+    <h1>Index View</h1>
+    <a href="{% url 'user register' %}">Register</a>
+    <a href="{% url 'user login' %}">Login</a>
+    <a href="{% url 'user logout' %}">Logout</a>
+{% endblock %}
