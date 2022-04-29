@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
+from callisto.auth_app.models import AppUser
 from callisto.main_app.models import Post
 
 
@@ -13,6 +14,17 @@ class PostListView(views.ListView):
     template_name = 'main/blog.html'
     ordering = ['-date_posted', ]
     paginate_by = 5
+
+
+class UserPostListView(views.ListView):
+    model = Post
+    template_name = 'main/user_posts.html'
+    # ordering = ['-date_posted', ]
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(AppUser, email=self.kwargs.get('email'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 
 class PostDetailView(views.DetailView):
