@@ -29,11 +29,14 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    'callisto.main_app',
     'callisto.auth_app',
+    'callisto.users_app',
+    'callisto.main_app',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'crispy_forms',
+]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
@@ -114,8 +117,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'staticfiles']
+STATIC_ROOT = BASE_DIR / 'static'  # TODO - static & staticfiles...
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'staticfiles']  # TODO - could cause problems -> os.path.join(...)
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -124,7 +131,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'auth_app.AppUser'
 
-LOGOUT_REDIRECT_URL = reverse_lazy('index')
+LOGIN_URL = reverse_lazy('user login')
+LOGOUT_REDIRECT_URL = reverse_lazy('blog')
 
 LOGGING = {
     'version': 1,
@@ -139,3 +147,7 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# TODO - CACHES
