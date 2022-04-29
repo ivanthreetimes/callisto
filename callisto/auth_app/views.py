@@ -18,7 +18,7 @@ class AppUserLoginView(auth_views.LoginView, message_views.SuccessMessageMixin):
     template_name = 'auth/login.html'
     success_message = "Successfully logged in!"  # TODO - not working -> base.html; messages
 
-    def get_success_url(self): # TODO - if ?next=... -> redirect there
+    def get_success_url(self):  # TODO - if ?next=... -> redirect there
         return reverse_lazy('blog')
 
 

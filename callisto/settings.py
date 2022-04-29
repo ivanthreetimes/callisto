@@ -30,7 +30,6 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     'callisto.auth_app',
-    'callisto.users_app',
     'callisto.main_app',
 ]
 

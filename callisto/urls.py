@@ -6,7 +6,6 @@ from django.urls import path, include
 urlpatterns = [  # TODO - custom 403(forbidden), 404 pages
     path('', include('callisto.main_app.urls')),
     path('auth/', include('callisto.auth_app.urls')),
-    path('users/', include('callisto.users_app.urls')),
     path('admin/', admin.site.urls),
 ]
 
