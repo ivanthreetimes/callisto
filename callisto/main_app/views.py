@@ -12,6 +12,7 @@ class PostListView(views.ListView):
     model = Post
     template_name = 'main/blog.html'
     ordering = ['-date_posted', ]
+    paginate_by = 5
 
 
 class PostDetailView(views.DetailView):
