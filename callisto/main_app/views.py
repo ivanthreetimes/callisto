@@ -38,7 +38,7 @@ class PostCreateView(auth_mixins.LoginRequiredMixin, views.CreateView):
     fields = ['title', 'content']
     template_name = 'main/post_create.html'
 
-    # success_url = reverse_lazy('blog') # Currently uses get_absolute_url in models
+    success_url = reverse_lazy('blog')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -49,8 +49,7 @@ class PostUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestM
     model = Post
     fields = ['title', 'content']
     template_name = 'main/post_update.html'
-
-    # success_url = reverse_lazy('blog') # Currently uses get_absolute_url in models
+    success_url = reverse_lazy('blog')
 
     def form_valid(self, form):
         form.instance.author = self.request.user

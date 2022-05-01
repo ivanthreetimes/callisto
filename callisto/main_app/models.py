@@ -1,5 +1,5 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
-from django.urls import reverse
 from django.utils import timezone
 from PIL import Image
 
@@ -22,22 +22,43 @@ class Post(models.Model):
         on_delete=models.CASCADE,
     )
 
-    # TODO
-    # last_modified = models.DateTimeField(
-    #     auto_now=True
-    # )
-
-    def get_absolute_url(self):
-        """
-        Redirects to post/<int:pk>/ after successful creation of a post
-        """
-        return reverse('post-detail', kwargs={'pk': self.pk})
-
     def __str__(self):
         return self.title
 
 
 class Profile(models.Model):  # TODO - image name -> f'{user.email}...'
+    FIRST_NAME_MIN_LENGTH = 3
+    FIRST_NAME_MAX_LENGTH = 30
+
+    LAST_NAME_MIN_LENGTH = 3
+    LAST_NAME_MAX_LENGTH = 30
+
+    GENDERS = [(x, x) for x in ('Male', 'Female', 'Other')]
+
+    first_name = models.CharField(
+        max_length=FIRST_NAME_MAX_LENGTH,
+        validators=(
+            MinLengthValidator(FIRST_NAME_MIN_LENGTH),
+        ),
+    )
+
+    last_name = models.CharField(
+        max_length=LAST_NAME_MAX_LENGTH,
+        validators=(
+            MinLengthValidator(LAST_NAME_MIN_LENGTH),
+        ),
+    )
+
+    gender = models.CharField(
+        max_length=max([len(x) for x, _ in GENDERS]),
+        choices=GENDERS,
+    )
+
+    date_of_birth = models.DateField(
+        null=True,
+        blank=True,
+    )
+
     profile_picture = models.ImageField(
         default='default.jpg',
         upload_to='profile_pics'

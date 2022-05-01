@@ -10,3 +10,4 @@ class AppUserRegistrationForm(auth_forms.UserCreationForm):
 
     def save(self, commit=True):
         return super().save(commit=commit)
+
