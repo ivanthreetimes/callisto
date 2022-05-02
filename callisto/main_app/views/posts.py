@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
 from callisto.main_app.models import Post
-from callisto.users_app.models import AppUser, Profile
+from callisto.users_app.models import AppUser
 
 
 class PostListView(views.ListView):
@@ -66,27 +66,5 @@ class PostDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestM
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
-            return True
-        return False
-
-
-class AboutView(views.TemplateView):
-    template_name = 'main/about.html'
-
-
-class ProfileUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.UpdateView):
-    model = Profile
-    fields = "__all__"
-    template_name = 'main/profile.html'
-    success_url = reverse_lazy('profile')
-
-    # TODO - send success_message
-
-    def get_object(self, queryset=None):
-        return self.request.user.profile
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.user:
             return True
         return False
