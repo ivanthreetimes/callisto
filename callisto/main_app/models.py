@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 from PIL import Image
 
-from callisto.auth_app.models import AppUser
+from callisto.users_app.models import AppUser
 
 
 class Post(models.Model):

@@ -4,7 +4,7 @@ from django.views import generic as views
 from django.contrib.auth import views as auth_views, login
 from django.contrib.messages import views as message_views
 
-from callisto.auth_app.forms import AppUserRegistrationForm
+from callisto.users_app.forms import AppUserRegistrationForm
 
 
 class AppUserRegistrationView(views.CreateView, message_views.SuccessMessageMixin):

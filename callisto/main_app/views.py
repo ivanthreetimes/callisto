@@ -6,7 +6,7 @@ from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
 from callisto.main_app.models import Post
-from callisto.auth_app.models import AppUser
+from callisto.users_app.models import AppUser
 
 from callisto.main_app.forms import UserUpdateForm, ProfileUpdateForm
 

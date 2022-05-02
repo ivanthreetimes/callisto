@@ -1,7 +1,7 @@
 from django.contrib.auth import models as auth_models
 from django.db import models
 
-from callisto.auth_app.managers import AppUsersManager
+from callisto.users_app.managers import AppUsersManager
 
 
 class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):

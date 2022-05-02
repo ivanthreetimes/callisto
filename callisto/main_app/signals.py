@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from callisto.auth_app.models import AppUser
+from callisto.users_app.models import AppUser
 from callisto.main_app.models import Profile
 
 

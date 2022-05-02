@@ -29,7 +29,7 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    'callisto.auth_app',
+    'callisto.users_app',
     'callisto.main_app',
 ]
 
@@ -128,7 +128,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'auth_app.AppUser'
+AUTH_USER_MODEL = 'users_app.AppUser'
 
 LOGIN_URL = reverse_lazy('user login')
 LOGOUT_REDIRECT_URL = reverse_lazy('blog')
