@@ -1,4 +1,3 @@
-from django.contrib.auth import views as auth_views
 from django.urls import path
 
 from callisto.users_app.views import AppUserRegistrationView, AppUserLoginView, AppUserLogoutView
