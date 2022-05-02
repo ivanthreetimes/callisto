@@ -1,14 +1,10 @@
-from django.contrib import messages  # TODO - FBV
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
 from callisto.main_app.models import Post
-from callisto.users_app.models import AppUser
-
-from callisto.users_app.forms import UserUpdateForm, ProfileUpdateForm
+from callisto.users_app.models import AppUser, Profile
 
 
 class PostListView(views.ListView):
@@ -78,24 +74,19 @@ class AboutView(views.TemplateView):
     template_name = 'main/about.html'
 
 
-@login_required
-def profile(request):
-    if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+class ProfileUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.UpdateView):
+    model = Profile
+    fields = "__all__"
+    template_name = 'main/profile.html'
+    success_url = reverse_lazy('profile')
 
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, f'Your account has been updated')
-            return redirect('profile')
+    # TODO - send success_message
 
-    else:
-        user_form = UserUpdateForm(instance=request.user)
-        profile_form = ProfileUpdateForm(instance=request.user.profile)
+    def get_object(self, queryset=None):
+        return self.request.user.profile
 
-    context = {
-        'user_form': user_form,
-        'profile_form': profile_form,
-    }
-    return render(request, 'main/profile.html', context)
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user:
+            return True
+        return False

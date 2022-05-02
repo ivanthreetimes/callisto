@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 
 from callisto.users_app.models import AppUser
+
+UserModel = get_user_model()
 
 
 class Post(models.Model):
@@ -16,11 +19,9 @@ class Post(models.Model):
     )
 
     author = models.ForeignKey(
-        AppUser,  # TODO - # UserModel = get_user_model()
+        UserModel,
         on_delete=models.CASCADE,
     )
 
     def __str__(self):
         return self.title
-
-

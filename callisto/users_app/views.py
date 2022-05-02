@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login
@@ -30,3 +29,5 @@ class AppUserLoginView(auth_views.LoginView, message_views.SuccessMessageMixin):
 class AppUserLogoutView(auth_views.LogoutView, message_views.SuccessMessageMixin):
     template_name = 'auth/logout.html'
     success_message = "You have been logged out!"  # TODO - success_message not working
+
+

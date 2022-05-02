@@ -1,10 +1,10 @@
 from django.urls import path
 from callisto.main_app.views import PostListView, AboutView, PostDetailView, \
-    PostCreateView, PostUpdateView, PostDeleteView, UserPostListView, profile
+    PostCreateView, PostUpdateView, PostDeleteView, UserPostListView, ProfileUpdateView
 
 urlpatterns = [
     path('', PostListView.as_view(), name='blog'),
-    path('profile/', profile, name='profile'),
+    path('profile/', ProfileUpdateView.as_view(), name='profile'),
     path('<str:email>', UserPostListView.as_view(), name='user-posts'),
     path('about/', AboutView.as_view(), name='about'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),

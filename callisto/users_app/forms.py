@@ -15,15 +15,10 @@ class AppUserRegistrationForm(auth_forms.UserCreationForm):
         return super().save(commit=commit)
 
 
+# TODO - add change passoword; remove update email?
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:
         model = UserModel
         fields = ['email', ]
-
-
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = '__all__'
