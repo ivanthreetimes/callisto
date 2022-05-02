@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -33,11 +34,12 @@ class PostCreateView(auth_mixins.LoginRequiredMixin, views.CreateView):
     model = Post
     fields = ['title', 'content']
     template_name = 'main/post_create.html'
-
     success_url = reverse_lazy('blog')
+    success_message = "Post created successfully!"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        messages.add_message(self.request, messages.INFO, self.success_message)
         return super().form_valid(form)
 
 
@@ -46,9 +48,11 @@ class PostUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestM
     fields = ['title', 'content']
     template_name = 'main/post_update.html'
     success_url = reverse_lazy('blog')
+    success_message = "Post updated successfully!"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        messages.add_message(self.request, messages.INFO, self.success_message)
         return super().form_valid(form)
 
     def test_func(self):
@@ -62,6 +66,11 @@ class PostDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestM
     model = Post
     template_name = 'main/post_confirm_delete.html'
     success_url = reverse_lazy('blog')
+    success_message = "Post deleted successfully!"
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.INFO, self.success_message)
+        return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
