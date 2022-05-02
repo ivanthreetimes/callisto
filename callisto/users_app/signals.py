@@ -2,7 +2,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from callisto.users_app.models import AppUser
-from callisto.main_app.models import Profile
+from callisto.users_app.models import Profile
 
 
 @receiver(post_save, sender=AppUser)

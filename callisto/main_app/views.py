@@ -8,7 +8,7 @@ from django.contrib.auth import mixins as auth_mixins
 from callisto.main_app.models import Post
 from callisto.users_app.models import AppUser
 
-from callisto.main_app.forms import UserUpdateForm, ProfileUpdateForm
+from callisto.users_app.forms import UserUpdateForm, ProfileUpdateForm
 
 
 class PostListView(views.ListView):
